@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		CA7744151FCB59DC004AB084 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7744141FCB59DC004AB084 /* main.swift */; };
+		CA77441C1FCB5A0D004AB084 /* ConsoleIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA77441B1FCB5A0D004AB084 /* ConsoleIO.swift */; };
+		CA77441E1FCB62DC004AB084 /* FileReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA77441D1FCB62DC004AB084 /* FileReader.swift */; };
+		CA7744211FCB643C004AB084 /* Generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA77441F1FCB643C004AB084 /* Generator.swift */; };
+		CA7744221FCB643C004AB084 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7744201FCB643C004AB084 /* JsonParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +29,11 @@
 /* Begin PBXFileReference section */
 		CA7744111FCB59DC004AB084 /* SwiftLocGen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftLocGen; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA7744141FCB59DC004AB084 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		CA77441B1FCB5A0D004AB084 /* ConsoleIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleIO.swift; sourceTree = "<group>"; };
+		CA77441D1FCB62DC004AB084 /* FileReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileReader.swift; sourceTree = "<group>"; };
+		CA77441F1FCB643C004AB084 /* Generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
+		CA7744201FCB643C004AB084 /* JsonParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
+		CA7744231FCB6AB7004AB084 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +50,7 @@
 		CA7744081FCB59DC004AB084 = {
 			isa = PBXGroup;
 			children = (
+				CA7744231FCB6AB7004AB084 /* README.md */,
 				CA7744131FCB59DC004AB084 /* SwiftLocGen */,
 				CA7744121FCB59DC004AB084 /* Products */,
 			);
@@ -57,7 +67,11 @@
 		CA7744131FCB59DC004AB084 /* SwiftLocGen */ = {
 			isa = PBXGroup;
 			children = (
+				CA77441F1FCB643C004AB084 /* Generator.swift */,
+				CA7744201FCB643C004AB084 /* JsonParser.swift */,
+				CA77441B1FCB5A0D004AB084 /* ConsoleIO.swift */,
 				CA7744141FCB59DC004AB084 /* main.swift */,
+				CA77441D1FCB62DC004AB084 /* FileReader.swift */,
 			);
 			path = SwiftLocGen;
 			sourceTree = "<group>";
@@ -120,7 +134,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA77441E1FCB62DC004AB084 /* FileReader.swift in Sources */,
+				CA7744221FCB643C004AB084 /* JsonParser.swift in Sources */,
+				CA7744211FCB643C004AB084 /* Generator.swift in Sources */,
 				CA7744151FCB59DC004AB084 /* main.swift in Sources */,
+				CA77441C1FCB5A0D004AB084 /* ConsoleIO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

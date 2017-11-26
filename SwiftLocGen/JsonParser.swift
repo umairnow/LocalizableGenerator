@@ -1,8 +1,8 @@
 //
-//  main.swift
-//  SwiftLocGen
+//  JsonParser.swift
+//  LocalizableGenerator
 //
-//  Created by Umair Aamir on 11/26/17.
+//  Created by Umair Aamir on 11/16/17.
 //
 //  MIT License
 
@@ -29,4 +29,28 @@
 
 import Foundation
 
-let fileReader = FileReader()
+protocol JsonParserProtocol {
+    func parseJson(_ jsonString: String) throws -> [String: Any]
+}
+
+class JsonParser {
+
+    enum ParserError: Error {
+        case invalidInput
+        case invalidJsonFormat
+    }
+
+}
+
+extension JsonParser: JsonParserProtocol {
+    func parseJson(_ jsonString: String) throws -> [String : Any] {
+        guard let jsonData = jsonString.data(using: .utf8) else {
+            throw ParserError.invalidInput
+        }
+        guard let json = try JSONSerialization.jsonObject(with: jsonData,
+                                                          options: .allowFragments) as? [String: Any] else {
+            throw ParserError.invalidJsonFormat
+        }
+        return json
+    }
+}
