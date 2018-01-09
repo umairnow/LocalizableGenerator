@@ -31,47 +31,43 @@ import Foundation
 
 class FileReader {
     let console = ConsoleIO()
-    var path: String
-    var jsonString: String?
-    var firstLanguageKey: String?
-    var secondLanguageKey: String?
 
     init() {
         console.writeMessage("Enter Json Path: ")
-        path = console.getInput()
-        readFile()
+        readFile(atPath: console.getInput())
     }
-// /Users/umairaamir/Desktop/translation.json
-    private func readFile() {
+    
+    private func readFile(atPath path: String) {
         do {
-            jsonString = try String(contentsOfFile: path)
+            let url = URL(fileURLWithPath: path)
+            let jsonData = try Data(contentsOf: url, options: .dataReadingMapped)
             console.writeMessage("Enter 1st language key:")
-            firstLanguageKey = console.getInput()
+            let firstLanguageKey = console.getInput()
             console.writeMessage("Enter 2nd language key:")
-            secondLanguageKey = console.getInput()
-            parseJson()
+            let secondLanguageKey = console.getInput()
+            parseJson(fromData: jsonData,
+                      withFirstLanguageKey: firstLanguageKey,
+                      andSecondLanguageKey: secondLanguageKey)
         } catch {
             print(error.localizedDescription)
         }
     }
 
-    private func parseJson() {
-        guard let json = jsonString else {
-            console.writeMessage("Json not found")
-            return
-        }
-        guard let langKey1 = firstLanguageKey,
-        let langKey2 = secondLanguageKey else {
+    private func parseJson(fromData jsonData: Data,
+                           withFirstLanguageKey firstLanguageKey: String,
+                           andSecondLanguageKey secondLanguageKey: String) {
+        guard firstLanguageKey.isEmpty == false &&
+        secondLanguageKey.isEmpty == false else {
             console.writeMessage("Language keys are required")
             return
         }
         let parser: JsonParserProtocol = JsonParser()
         do {
-            let dictionary = try parser.parseJson(json)
+            let dictionary = try parser.parseJson(data: jsonData)
             let generator: GeneratorProtocol = Generator()
             let path = generator.generateFiles(from: dictionary,
-                                               with: langKey1,
-                                               and: langKey2)
+                                               with: firstLanguageKey,
+                                               and: secondLanguageKey)
             console.writeMessage("Files generated at: \(path)")
         } catch {
             print(error.localizedDescription)

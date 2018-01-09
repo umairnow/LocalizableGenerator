@@ -30,25 +30,21 @@
 import Foundation
 
 protocol JsonParserProtocol {
-    func parseJson(_ jsonString: String) throws -> [String: Any]
+    func parseJson(data jsonData: Data) throws -> [String: Any]
 }
 
 class JsonParser {
 
     enum ParserError: Error {
-        case invalidInput
         case invalidJsonFormat
     }
 
 }
 
 extension JsonParser: JsonParserProtocol {
-    func parseJson(_ jsonString: String) throws -> [String : Any] {
-        guard let jsonData = jsonString.data(using: .utf8) else {
-            throw ParserError.invalidInput
-        }
+    func parseJson(data jsonData: Data) throws -> [String : Any] {
         guard let json = try JSONSerialization.jsonObject(with: jsonData,
-                                                          options: .allowFragments) as? [String: Any] else {
+                                                          options: .mutableContainers) as? [String: Any] else {
             throw ParserError.invalidJsonFormat
         }
         return json

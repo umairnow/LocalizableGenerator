@@ -1,0 +1,28 @@
+{
+   "translations":{
+      "Sign_Up_Translation":{
+         "name":{
+            "en":"Forename Surname",
+            "no":"Fornavn Etternavn"
+         },
+         "email":{
+            "en":"E-mail address",
+            "no":"E-postadresse"
+         },
+         "password":{
+            "en":"Password",
+            "no":"Passord"
+         }
+      },
+      "Login_Translation":{
+         "email":{
+            "en":"E-mail address",
+            "no":"E-postadresse"
+         },
+         "password":{
+            "en":"Password",
+            "no":"Passord"
+         }
+      }
+   }
+}
