@@ -60,14 +60,7 @@ class ConsoleIO {
   }
   
   func getInput() -> String {
-    // 1
-    let keyboard = FileHandle.standardInput
-    // 2
-    let inputData = keyboard.availableData
-    // 3
-    let strData = String(data: inputData, encoding: String.Encoding.utf8)!
-    // 4
-    return strData.trimmingCharacters(in: CharacterSet.newlines)
+    return readLine()!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
   }
 }
 
