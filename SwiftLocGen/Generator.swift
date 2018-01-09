@@ -94,24 +94,26 @@ class Generator {
 
     private func saveFile(_ classContent: String, className: String, classExtension: String) -> String {
         let defaultManager = FileManager.default
-        var documentPath = ""
-        if let homeUrl = NSSearchPathForDirectoriesInDomains(.applicationSupportDirectory, .userDomainMask, true).first {
-            documentPath = homeUrl + "/Translations"
-            if defaultManager.fileExists(atPath: documentPath) == false {
+        var fileUrl = URL(fileURLWithPath: className)
+        if let desktopDir = defaultManager.urls(for: .desktopDirectory, in: .userDomainMask).first {
+            let documentURL = desktopDir.appendingPathComponent("Translations").appendingPathExtension(classExtension)
+            if defaultManager.fileExists(atPath: documentURL.path) == false {
                 do {
-                    try defaultManager.createDirectory(atPath: documentPath, withIntermediateDirectories: true, attributes: nil)
+                    try defaultManager.createDirectory(at: documentURL,
+                                                       withIntermediateDirectories: true,
+                                                       attributes: nil)
                 } catch {
                     print(error.localizedDescription)
                 }
             }
-            let documentUrl = URL(fileURLWithPath: documentPath).appendingPathComponent(className).appendingPathExtension(classExtension)
+            fileUrl = documentURL.appendingPathComponent(className).appendingPathExtension(classExtension)
             do {
-                try classContent.write(to: documentUrl, atomically: true, encoding: .utf8)
+                try Data(classContent.utf8).write(to: fileUrl, options: .atomic)
             } catch {
                 print(error.localizedDescription)
             }
         }
-        return documentPath
+        return fileUrl.path
     }
 
     private func replacePlaceholder(from value: String) -> String {

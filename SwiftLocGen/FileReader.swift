@@ -41,7 +41,7 @@ class FileReader {
         path = console.getInput()
         readFile()
     }
-
+// /Users/umairaamir/Desktop/translation.json
     private func readFile() {
         do {
             jsonString = try String(contentsOfFile: path)
